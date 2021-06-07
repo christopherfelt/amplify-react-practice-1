@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "ampreactprac155b93b79": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
