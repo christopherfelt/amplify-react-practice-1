@@ -58,7 +58,12 @@ function App() {
   const signInHandler = (e) => {
     e.preventDefault();
     setShowLoggedInButton(true);
-    console.log("Sign In Stuff", signInEmail, signInPassword);
+    try {
+      const user = await Auth.signIn(signInEmail, signInPassword);
+      console.log("Sign In Successful:", user);
+    } catch (error) {
+      console.log("error signing in:", error);
+    }
   };
 
   const authenticateUserHandler = (e) => {
