@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Amplify from "aws-amplify";
 import awsconfig from "./aws-exports";
 // import { AmplifySignOut, withAuthenticator } from "@aws-amplify/ui-react";
@@ -29,6 +29,18 @@ function App() {
 
   const [showLoggedInButton, setShowLoggedInButton] = useState(false);
 
+  // const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
+
+  useEffect(() => {
+    async function checkUserAuth() {
+      let user = await Auth.currentAuthenticatedUser();
+      if (user) {
+        setShowLoggedInButton(true);
+      }
+    }
+    checkUserAuth();
+  }, []);
+
   const signUpHandler = async (e) => {
     e.preventDefault();
     try {
@@ -55,7 +67,7 @@ function App() {
     }
   };
 
-  const signInHandler = (e) => {
+  const signInHandler = async (e) => {
     e.preventDefault();
     setShowLoggedInButton(true);
     try {
@@ -66,12 +78,13 @@ function App() {
     }
   };
 
-  const authenticateUserHandler = (e) => {
-    // try {
-
-    // } catch (error) {
-    //   console.log("User is not signed in:", error)
-    // }
+  const authenticateUserHandler = async (e) => {
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      console.log("Authentication Successful:", user);
+    } catch (error) {
+      console.log("User is not signed in:", error);
+    }
     console.log("Hi from authenticate user button");
   };
 
@@ -79,6 +92,10 @@ function App() {
     e.preventDefault();
     console.log("Sign Out Stuff");
   };
+
+  // change password
+  // change email
+  // forgot password
 
   return (
     <div className="App">
@@ -166,6 +183,11 @@ function App() {
                 Sign Out
               </Button>
             </Col>
+            <Col
+              style={colDismensions}
+              className="border d-flex align-items-center justify-content-center"
+              xs={4}
+            ></Col>
           </Row>
         </Container>
       </header>
