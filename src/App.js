@@ -101,7 +101,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h2>My App Content</h2>
-        <Container className="d-flex justify-content-center">
+        <Container className="">
           <Row>
             <Col
               style={colDismensions}
@@ -183,11 +183,29 @@ function App() {
                 Sign Out
               </Button>
             </Col>
+          </Row>
+          <Row>
             <Col
               style={colDismensions}
               className="border d-flex align-items-center justify-content-center"
               xs={4}
-            ></Col>
+            >
+              <h2>Change Password</h2>
+            </Col>
+            <Col
+              style={colDismensions}
+              className="border d-flex align-items-center justify-content-center"
+              xs={4}
+            >
+              <h2>Change Email</h2>
+            </Col>
+            <Col
+              style={colDismensions}
+              className="border d-flex align-items-center justify-content-center"
+              xs={4}
+            >
+              <h2>Forgot Password</h2>
+            </Col>
           </Row>
         </Container>
       </header>
