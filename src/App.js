@@ -205,6 +205,7 @@ function App() {
               xs={4}
             >
               <h2>Forgot Password</h2>
+              <Button>Forgot Password</Button>
             </Col>
           </Row>
         </Container>
